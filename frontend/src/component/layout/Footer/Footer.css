@@ -1,0 +1,22 @@
+footer {
+    padding: 5rem 0;
+    text-align: center;
+    padding: 5px;
+    background-color: #050A30;
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 1vmax;
+  }
+
+  .sticky {
+      position: fixed;
+  }
+
+  footer a {
+      color: whitesmoke;
+  }
+
+  footer a:hover {
+      color: crimson;
+  }
+  
