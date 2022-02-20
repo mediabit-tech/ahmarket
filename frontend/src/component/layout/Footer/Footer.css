@@ -17,6 +17,7 @@ footer {
   }
 
   footer a:hover {
-      color: crimson;
+      color: tomato;
+      transition: all 0.5s;
   }
   

@@ -6,6 +6,8 @@ import Header from './component/layout/Header/Header';
 import Footer from './component/layout/Footer/Footer';
 import Home from './component/Home/Home.js';
 import ProductDetails from './component/Product/ProductDetails.js';
+import Products from './component/Product/Products.js';
+import Search from './component/Product/Search.js';
 
 function App() {
 
@@ -20,10 +22,14 @@ function App() {
   return (
     <Router>
       <Header />
+
       <Routes>
         <Route extact path='/' element={<Home />} />
         <Route extact path='/product/:id' element={<ProductDetails />} />
+        <Route extact path='/products' element={<Products />} />
+        <Route extact path='/search' element={<Search />} />
       </Routes>
+      
       <Footer />
     </Router>
   );

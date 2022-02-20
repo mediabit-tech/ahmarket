@@ -28,7 +28,7 @@ export const getProduct = () => async (dispatch) => {
 };
 
 // Get single productDetails from backend
-const getProductDetails = (id) => async (dispatch) => {
+export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/v1/product/${id}`);
@@ -48,5 +48,3 @@ const getProductDetails = (id) => async (dispatch) => {
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS })
 };
-
-export default getProductDetails
