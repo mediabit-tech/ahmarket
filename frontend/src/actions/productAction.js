@@ -10,10 +10,12 @@ import {
 } from "../constants/productConstant";
 
 // Get all products from backend
-export const getProduct = () => async (dispatch) => {
+export const getProduct = (keyword = "", currentPage = 1) => async (dispatch) => {
   try {
     dispatch({ type: ALL_PRODUCT_REQUEST });
-    const { data } = await axios.get("/api/v1/products");
+
+    let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`;
+    const { data } = await axios.get(link);
     // const {data} = await fetch("/api/v1/products");
     dispatch({
       type: ALL_PRODUCT_SUCCESS,
