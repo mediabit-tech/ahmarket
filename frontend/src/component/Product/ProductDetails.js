@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import RewiewCard from "./RewiewCard.js";
 import Loader from "../layout/loader/loader";
-import {useAlert} from "react-alert";
+import { useAlert } from "react-alert";
+import MetaData from '../layout/MetaData';
 
 // React Hooks component name always start from UPPERCASE like ProductDetails
 const ProductDetails = () => {
@@ -20,10 +21,10 @@ const ProductDetails = () => {
   );
 
   useEffect(() => {
-      if(error) {
-          alert.error(error);
-          dispatch(clearErrors());
-      }
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
     dispatch(getProductDetails(id));
   }, [dispatch, id, alert, error]);
 
@@ -42,6 +43,8 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <Fragment>
+
+          <MetaData title={`${product.name} - AH Market`} />
           <div className="ProductDetails">
             <div>
               <Carousel>

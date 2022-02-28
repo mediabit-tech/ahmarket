@@ -23,20 +23,20 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     // apiFeature is filter feature with keyword
     const apiFeature = new ApiFeatures(Product.find(), req.query)
         .search()
-        .filter()
-        .pagination(resultPerPage);
+        .filter();
+        
     // filteredProductCount
-    // let products = await apiFeature.query;
-    // let filteredProductsCount = products.length;
-    // apiFeature.pagination(resultPerPage);
+    let products = await apiFeature.query;
+    let filteredProductsCount = products.length;
+    apiFeature.pagination(resultPerPage);
 
-    const products = await apiFeature.query;
+    products = await apiFeature.query.clone();
     res.status(200).json({
         success: true,
         products,
         productsCount,
         resultPerPage,
-        // filteredProductsCount,
+        filteredProductsCount,
     });
 });
 

@@ -300,3 +300,19 @@ li {
     font-size: 3.8rem;
   }
 }
+
+/* ----------- UserOptions starts for logged in user avatar display ----------------- */
+
+.speedDial {
+  position: fixed;
+  right: 5vmax;
+  top: 1.8vmax;
+}
+
+.speedDialIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+}
+
+/* ----------- UserOptions ends ----------------- */
