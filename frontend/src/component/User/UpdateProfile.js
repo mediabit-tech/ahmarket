@@ -99,7 +99,7 @@ const UpdateProfile = () => {
                     required
                     name="email"
                     value={email}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div id="updateProfileImage">

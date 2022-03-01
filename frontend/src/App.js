@@ -4,18 +4,20 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import React from 'react';
 import Header from './component/layout/Header/Header';
 import Footer from './component/layout/Footer/Footer';
-import Home from './component/Home/Home.js';
-import ProductDetails from './component/Product/ProductDetails.js';
-import Products from './component/Product/Products.js';
-import Search from './component/Product/Search.js';
+import Home from './component/Home/Home';
+import ProductDetails from './component/Product/ProductDetails';
+import Products from './component/Product/Products';
+import Search from './component/Product/Search';
 import LoginSignUp from './component/User/LoginSignUp';
 import store from './store';
 import { loadUser } from './actions/userAction';
-import UserOptions from './component/layout/Header/UserOptions.js';
+import UserOptions from './component/layout/Header/UserOptions';
 import { useSelector } from 'react-redux';
-import Profile from './component/User/Profile.js';
-import UpdateProfile from './component/User/UpdateProfile.js';
-import UpdatePassword from './component/User/UpdatePassword.js';
+import Profile from './component/User/Profile';
+import UpdateProfile from './component/User/UpdateProfile';
+import UpdatePassword from './component/User/UpdatePassword';
+import ForgotPassword from './component/User/ForgotPassword';
+import ResetPassword from './component/User/ResetPassword';
 
 function App() {
 
@@ -45,6 +47,8 @@ function App() {
         <Route extact path='/account' element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
         <Route extact path='/me/update' element={isAuthenticated ? <UpdateProfile /> : <Navigate to="/login" />} />
         <Route extact path='/password/update' element={isAuthenticated ? <UpdatePassword /> : <Navigate to="/login" />} />
+        <Route extact path='/password/forgot' element={<ForgotPassword />} />
+        <Route extact path='/password/reset/:token' element={<ResetPassword />} />
         <Route extact path='/login' element={<LoginSignUp />} />
       </Routes>
       
