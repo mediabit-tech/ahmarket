@@ -18,6 +18,7 @@ import UpdateProfile from './component/User/UpdateProfile';
 import UpdatePassword from './component/User/UpdatePassword';
 import ForgotPassword from './component/User/ForgotPassword';
 import ResetPassword from './component/User/ResetPassword';
+import Cart from './component/Cart/Cart';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route extact path='/password/forgot' element={<ForgotPassword />} />
         <Route extact path='/password/reset/:token' element={<ResetPassword />} />
         <Route extact path='/login' element={<LoginSignUp />} />
+        <Route extact path='/cart' element={<Cart />} />
       </Routes>
       
       <Footer />

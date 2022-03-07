@@ -1,0 +1,192 @@
+.emptyCart {
+  margin: auto;
+  text-align: center;
+  display: flex;
+  padding: 10vmax;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+}
+
+.emptyCart > svg {
+  font-size: 5vmax;
+  color: rgba(5, 10, 48, 0.5);
+}
+
+.emptyCart > p {
+  font-size: 2vmax;
+  color: rgba(5, 10, 48, 0.7);
+}
+
+.emptyCart > a {
+  background-color: rgb(5, 10, 48);
+  color: white;
+  border: none;
+  padding: 1vmax 3vmax;
+  cursor: pointer;
+  font: 400 1vmax "Poppins";
+  text-decoration: none;
+}
+
+.cartPage {
+  padding: 9vmax;
+}
+
+.cartHeader {
+  background-color: rgb(5, 10, 48);
+  width: 90%;
+  box-sizing: border-box;
+  display: grid;
+  margin: auto;
+  color: white;
+  grid-template-columns: 4fr 1fr 1fr;
+  font: 300 0.8vmax "Poppins";
+}
+
+.cartHeader > p {
+  margin: 10px;
+}
+
+.cartHeader > p:last-child {
+  text-align: end;
+}
+
+.cartContainer {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+}
+
+.cartInput {
+  display: flex;
+  align-items: center;
+  height: 8vmax;
+}
+
+.cartInput > button {
+  font: 400 1vmax "Poppins";
+  border: 0.1vmax solid;
+  border-radius: 0.3vmax;
+  padding: 0.4vmax;
+  width: 2.5vmax;
+  cursor: pointer;
+  background-color: rgba(5, 10, 48, 0.7);
+  color: white;
+  transition: all 0.5s;
+}
+
+.cartInput > button:hover {
+  background-color: rgb(5, 10, 48);
+}
+
+.cartInput > input {
+  border: none;
+  padding: 0.5vmax;
+  width: 2vmax;
+  text-align: center;
+  outline: none;
+  font: 500 0.8vmax "Poppins";
+  color: rgba(0, 0, 0, 0.7);
+  background-color: transparent;
+}
+
+.cartSubTotal {
+  display: flex;
+  padding: 0.5vmax;
+  justify-content: flex-end;
+  color: rgba(5, 10, 48, 0.7);
+  box-sizing: border-box;
+  font: 300 1vmax cursive;
+  align-items: center;
+  height: 8vmax;
+}
+
+.cartGrossTotal {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+}
+
+.cartGrossTotalBox {
+  border-top: 3px solid rgb(5, 10, 48);
+  box-sizing: border-box;
+  padding: 2vmax 0;
+  font: 300 1vmax "Roboto";
+  margin: 1vmax 4vmax;
+  justify-content: space-between;
+  display: flex;
+}
+
+.checkOutBtn {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.checkOutBtn > button {
+  background-color: rgb(5, 10, 48);
+  color: white;
+  border: none;
+  padding: 0.8vmax 4vmax;
+  width: 50%;
+  font: 300 0.8vmax "Poppins";
+  margin: 1vmax 4vmax;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .cartPage {
+    padding: 9vmax 0 0 0;
+    min-width: 50vh;
+  }
+
+  .cartHeader {
+    width: 100%;
+    font: 300 1.5vmax "Poppins";
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+
+  .cartContainer {
+    width: 100%;
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+
+  .cartInput {
+    height: 20vmax;
+  }
+
+  .cartInput > button {
+    padding: 1.5vmax;
+  }
+
+  .cartInput > input {
+    padding: 0.8vmax;
+    width: 4vmax;
+    font: 300 2vmax "Poppins";
+  }
+
+  .cartSubTotal {
+    padding: 1.5vmax;
+    height: 20vmax;
+    font: 300 2vmax cursive;
+  }
+
+  .cartGrossTotal {
+      display: grid;
+      grid-template-columns: 0fr 2fr;
+  }
+
+  .cartGrossTotalBox {
+      padding: 2vmax;
+      font: 300 2vmax "Roboto";
+  }
+
+  .checkOutBtn > button {
+      padding: 1.5vmax 3vmax;
+      font: 300 1.8vmax "Poppins";
+      width: 100%;
+  }
+
+
+}

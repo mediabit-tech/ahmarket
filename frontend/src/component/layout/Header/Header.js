@@ -27,7 +27,7 @@ const Header = () => {
                 <div className="social-media">
                     <ul className="social-media-desktop">
                         <li><Link to="/search"><FaSearch className='search' /></Link></li>
-                        <li><Link to="#"><FaCartArrowDown className='cart' /></Link></li>
+                        <li><Link to="/cart"><FaCartArrowDown className='cart' /></Link></li>
                         <li><Link to="/login"><FaUser className='user' /></Link></li>
                     </ul>
                 </div>

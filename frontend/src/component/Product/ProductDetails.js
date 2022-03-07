@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import RewiewCard from "./RewiewCard.js";
 import Loader from "../layout/loader/loader";
 import { useAlert } from "react-alert";
 import MetaData from '../layout/MetaData';
+import { addItemsToCart } from "../../actions/cartAction";
 
 // React Hooks component name always start from UPPERCASE like ProductDetails
 const ProductDetails = () => {
@@ -16,17 +17,33 @@ const ProductDetails = () => {
   // console.log("Product id : ", id);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const [quantity, setQuantity] = useState(1);
+
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    dispatch(getProductDetails(id));
-  }, [dispatch, id, alert, error]);
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) {
+      return
+    };
+    const qty = quantity + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQuantity = () => {
+    if (1 >= quantity) {
+      return
+    };
+    const qty = quantity - 1;
+    setQuantity(qty);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item added to cart.");
+  }
 
   const options = {
     edit: false,
@@ -36,6 +53,14 @@ const ProductDetails = () => {
     value: product.ratings,
     isHalf: true,
   };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getProductDetails(id));
+  }, [dispatch, id, alert, error]);
 
   return (
     <Fragment>
@@ -75,16 +100,16 @@ const ProductDetails = () => {
                 <h1>{`₹ ${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    <button> - </button>
-                    <input type="number" value="1" />
-                    <button> + </button>
+                    <button onClick={decreaseQuantity}> - </button>
+                    <input readOnly type="number" value={quantity} />
+                    <button onClick={increaseQuantity}> + </button>
                   </div>
-                  <button>Add to Cart</button>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
                 <p>
                   status:
-                  <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                    {product.Stock < 1 ? " OutOfStock" : " InStock"}
+                  <b className={product.stock < 1 ? "redColor" : "greenColor"}>
+                    {product.stock < 1 ? " OutOfStock" : " InStock"}
                   </b>
                 </p>
               </div>
