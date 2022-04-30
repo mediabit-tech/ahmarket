@@ -3,12 +3,14 @@ import "./Cart.css";
 import CartItemCard from "./CartItemCard";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import MetaData from '../layout/MetaData';
 
 const Cart = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { cartItems } = useSelector((state) => state.cart);
 
     const increaseQuantity = (id, quantity, stock) => {
@@ -31,6 +33,10 @@ const Cart = () => {
         dispatch(removeItemsFromCart(id));
     };
 
+    const checkoutHandler = () => {
+        navigate("/login?redirect=shipping");
+    };
+
     return (
         <Fragment>
             {cartItems.length === 0 ? (
@@ -41,6 +47,7 @@ const Cart = () => {
                 </div>
             ) : (
                 <Fragment>
+                    <MetaData title={`Cart (${cartItems.length}) - AH Market`} />
                     <div className="cartPage">
                         <div className="cartHeader">
                             <p>Product</p>
@@ -85,7 +92,7 @@ const Cart = () => {
                             </div>
                             <div></div>
                             <div className="checkOutBtn">
-                                <button>Checkout</button>
+                                <button onClick={checkoutHandler}>Checkout</button>
                             </div>
                         </div>
                     </div>

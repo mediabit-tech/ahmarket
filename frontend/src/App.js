@@ -1,7 +1,7 @@
 import './App.css';
 import webFont from 'webfontloader';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './component/layout/Header/Header';
 import Footer from './component/layout/Footer/Footer';
 import Home from './component/Home/Home';
@@ -19,12 +19,25 @@ import UpdatePassword from './component/User/UpdatePassword';
 import ForgotPassword from './component/User/ForgotPassword';
 import ResetPassword from './component/User/ResetPassword';
 import Cart from './component/Cart/Cart';
+import Shipping from './component/Cart/Shipping';
+import ConfirmOrder from './component/Cart/ConfirmOrder';
+import Payment from './component/Cart/Payment';
+import axios from 'axios';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 function App() {
 
-  const {isAuthenticated, user} = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  React.useEffect(() => {
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+  }
+
+  useEffect(() => {
     webFont.load({
       google: {
         families: ["Poppins", "Roboto"],
@@ -32,13 +45,15 @@ function App() {
     });
 
     store.dispatch(loadUser());
+
+    getStripeApiKey();
   }, []);
 
   return (
     <Router>
       <Header />
-
-        {isAuthenticated && <UserOptions user={user} />}
+      {isAuthenticated && <UserOptions user={user} />}
+      {/* {stripeApiKey && (<Elements stripe={loadStripe(stripeApiKey)} > */}
       <Routes>
         <Route extact path='/' element={<Home />} />
         <Route extact path='/product/:id' element={<ProductDetails />} />
@@ -52,8 +67,13 @@ function App() {
         <Route extact path='/password/reset/:token' element={<ResetPassword />} />
         <Route extact path='/login' element={<LoginSignUp />} />
         <Route extact path='/cart' element={<Cart />} />
-      </Routes>
+        <Route extact path='/login/shipping' element={isAuthenticated ? <Shipping /> : <Navigate to="/login" />} />
+        <Route extact path='/order/confirm' element={isAuthenticated ? <ConfirmOrder /> : <Navigate to="/login" />} />
+        
+        <Route extact path='/process/payment' element={isAuthenticated ? <Payment /> : <Navigate to="/login" />} />
       
+      </Routes>
+      {/* </Elements>)} */}
       <Footer />
     </Router>
   );
